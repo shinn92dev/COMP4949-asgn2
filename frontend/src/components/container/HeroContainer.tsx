@@ -16,20 +16,26 @@ import {
     ChevronRight,
 } from "lucide-react";
 import { motion, useAnimation, useInView } from "framer-motion";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
+import { useUser } from "@clerk/clerk-react";
 const HeroContainer = () => {
     const [isVisible, setIsVisible] = useState(false);
     const controls = useAnimation();
     const ref = useRef(null);
     const inView = useInView(ref, { once: true });
-
+    const navigate = useNavigate();
     useEffect(() => {
         setIsVisible(true);
         if (inView) {
             controls.start("visible");
         }
     }, [controls, inView]);
-
+    const { isSignedIn } = useUser();
+    if (isSignedIn) {
+        navigate("/dashboard");
+    }
     return (
         <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen">
             {/* Animated particles */}
@@ -94,13 +100,15 @@ const HeroContainer = () => {
                             transition={{ duration: 0.6, delay: 0.5 }}
                             className="mt-8 flex flex-wrap gap-4"
                         >
-                            <Button
-                                size="lg"
-                                className="bg-gradient-to-r from-teal-500 to-teal-400 hover:from-teal-600 hover:to-teal-500 text-white border-0 shadow-lg shadow-teal-500/20 transition-all duration-300 hover:shadow-teal-500/40"
-                            >
-                                Start Your Assessment
-                                <ArrowRight className="ml-2 h-4 w-4" />
-                            </Button>
+                            <Link to="/signin">
+                                <Button
+                                    size="lg"
+                                    className="bg-gradient-to-r from-teal-500 to-teal-400 hover:from-teal-600 hover:to-teal-500 text-white border-0 shadow-lg shadow-teal-500/20 transition-all duration-300 hover:shadow-teal-500/40"
+                                >
+                                    Start Your Assessment
+                                    <ArrowRight className="ml-2 h-4 w-4" />
+                                </Button>
+                            </Link>
                         </motion.div>
 
                         <motion.div
