@@ -1,6 +1,7 @@
 # from sqlalchemy.orm import Session
 from db.database import SessionLocal
 from db.models import Users
+from fastapi import HTTPException
 
 
 class CRUD:
@@ -24,7 +25,7 @@ class CRUD:
         finally:
             db.close()
 
-    def add_new_user(self, user: dict):
+    def add_new_user(self, user: dict) -> Users:
         db = SessionLocal()
         try:
             new_user = Users(**user)
@@ -32,5 +33,15 @@ class CRUD:
             db.commit()
             db.refresh(new_user)
             return new_user
+        finally:
+            db.close()
+
+    def check_survey_status(self, user_id: str):
+        db = SessionLocal()
+        try:
+            user = db.query(Users).filter(Users.user_id == user_id).first()
+            if not user:
+                raise HTTPException(status_code=404, detail="User not found")
+            return user.is_survey_done
         finally:
             db.close()

@@ -20,12 +20,16 @@ async def login(
         token = credentials.credentials
         user_info = await clerk.get_user_info(token)
         exist_user = crud.is_user_exist(user_info["user_id"])
+        
         print(f"✔[SERVER] User already exist: {exist_user}")
         if not exist_user:
             new_user = crud.add_new_user(user_info)
             print(f"✔[SERVER] New user created in DB {new_user}")
         message = "All login process is successfully done."
-
-        return custom_response.success_response(message)
+        del user_info["created_at"]
+        return custom_response.success_response(
+            message,
+            user_info
+            )
     except Exception as e:
         print(e)
