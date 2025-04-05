@@ -4,7 +4,7 @@ from db.database import engine, Base
 from core.config import settings
 import db.models  # noqa: F401
 
-from routers import test
+from routers import test, authentication
 
 ENV = settings.ENVIRONMENT
 BASE_PREFIX = settings.BASE_PREFIX
@@ -25,6 +25,10 @@ def create_app():
 
     # Register Each Service
     app.include_router(test.router, prefix=f"{BASE_PREFIX}")
+    app.include_router(
+        authentication.router,
+        prefix=f"{BASE_PREFIX}/authentication"
+        )
 
     # Initialize Database
     try:

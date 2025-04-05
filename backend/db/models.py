@@ -6,8 +6,8 @@ from sqlalchemy.orm import relationship
 class Users(Base):
     __tablename__ = "users"
 
-    user_id = Column(Integer, primary_key=True, index=True, unique=True)
-    email = Column(String, unique=True, nullable=False)
+    user_id = Column(String, primary_key=True, index=True, unique=True)
+    name = Column(String, unique=True, nullable=False)
     created_at = Column(DateTime, nullable=False)
     is_survey_done = Column(Boolean, default=False, nullable=False)
 
