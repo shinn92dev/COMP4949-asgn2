@@ -1,4 +1,10 @@
+import HeroContainer from "../components/container/HeroContainer";
+
 const Home = () => {
-    return <div>HOME</div>;
+    return (
+        <div>
+            <HeroContainer />
+        </div>
+    );
 };
 export default Home;

@@ -1,6 +1,10 @@
-import { defineConfig } from '@rsbuild/core';
-import { pluginReact } from '@rsbuild/plugin-react';
+import { defineConfig, loadEnv } from "@rsbuild/core";
+import { pluginReact } from "@rsbuild/plugin-react";
 
+const { publicVars } = loadEnv({ prefixes: ["PUBLIC_"] });
 export default defineConfig({
-  plugins: [pluginReact()],
+    plugins: [pluginReact()],
+    source: {
+        define: publicVars,
+    },
 });
