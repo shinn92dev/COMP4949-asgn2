@@ -1,0 +1,56 @@
+# ────────── 공통 ──────────
+node_modules/
+.env
+.DS_Store
+*.log
+dist/
+
+# ────────── Frontend (React + RSbuild) ──────────
+frontend/dist/
+frontend/.next/
+frontend/.turbo/
+frontend/.vercel/
+frontend/.cache/
+frontend/build/
+frontend/*.local
+
+# tailwind JIT 캐시
+frontend/.tailwind/
+
+# vscode 설정 (선택)
+.vscode/
+
+# ────────── Backend (FastAPI) ──────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtualenv
+venv/
+env/
+ENV/
+.venv/
+
+# FastAPI 관련
+backend/.mypy_cache/
+backend/.pytest_cache/
+backend/.ruff_cache/
+backend/.vscode/
+backend/.env
+
+# sqlite or temporary DB
+*.db
+*.sqlite3
+
+# Jupyter (Colab 포함) – 선택
+.ipynb_checkpoints/
+*.ipynb
+
+# ────────── OS 별 ──────────
+# macOS
+*.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
