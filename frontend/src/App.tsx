@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import { RedirectToSignIn, SignedIn, SignedOut } from "@clerk/clerk-react";
 import SignIn from "./pages/SignIn";
 import Layout from "./Layout";
+import Survey from "./pages/Survey";
 
 const App = () => {
     return (
@@ -30,6 +31,19 @@ const App = () => {
                     element={
                         <Layout>
                             <SignIn />
+                        </Layout>
+                    }
+                />
+                <Route
+                    path="/survey"
+                    element={
+                        <Layout>
+                            <SignedIn>
+                                <Survey />
+                            </SignedIn>
+                            <SignedOut>
+                                <RedirectToSignIn />
+                            </SignedOut>
                         </Layout>
                     }
                 />

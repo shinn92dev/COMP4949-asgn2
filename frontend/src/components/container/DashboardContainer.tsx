@@ -36,7 +36,7 @@ const DashboardContainer = () => {
         handelVerifyAuth();
     }, [isSignedIn, session.session, navigate]);
     if (isLoading) return <p>Loading...</p>;
-    return <div>Dashboard</div>;
+    return <div className="mt-10">Dashboard</div>;
 };
 
 export default DashboardContainer;
