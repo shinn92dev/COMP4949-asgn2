@@ -6,6 +6,8 @@ import { RedirectToSignIn, SignedIn, SignedOut } from "@clerk/clerk-react";
 import SignIn from "./pages/SignIn";
 import Layout from "./Layout";
 import Survey from "./pages/Survey";
+import Diary from "./pages/Diary";
+import DiaryWrite from "./pages/DiaryWrite";
 
 const App = () => {
     return (
@@ -19,6 +21,32 @@ const App = () => {
                         <Layout>
                             <SignedIn>
                                 <Dashboard />
+                            </SignedIn>
+                            <SignedOut>
+                                <RedirectToSignIn />
+                            </SignedOut>
+                        </Layout>
+                    }
+                />
+                <Route
+                    path="/diary"
+                    element={
+                        <Layout>
+                            <SignedIn>
+                                <Diary />
+                            </SignedIn>
+                            <SignedOut>
+                                <RedirectToSignIn />
+                            </SignedOut>
+                        </Layout>
+                    }
+                />
+                <Route
+                    path="/diary/write"
+                    element={
+                        <Layout>
+                            <SignedIn>
+                                <DiaryWrite />
                             </SignedIn>
                             <SignedOut>
                                 <RedirectToSignIn />
