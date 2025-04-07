@@ -22,7 +22,7 @@ const DashboardContainer = () => {
                 }
                 const userData = await loginFetchRequest(token);
                 const surveyStatusData = await checkInitialSurvey(userData.data.user_id);
-                const surveyStatus = surveyStatusData.data.survey_status;
+                const surveyStatus = surveyStatusData.data.survey_statue;
                 if (!surveyStatus) {
                     navigate("/survey");
                 }

@@ -29,7 +29,7 @@ class DepressionScore(Base):
     score_id = Column(Integer, primary_key=True, index=True, unique=True)
     user_id = Column(Integer, ForeignKey("users.user_id"), nullable=False)
     diary_id = Column(Integer, ForeignKey("diary.diary_id"), nullable=True)
-    score = Column(Integer, nullable=False)
+    score = Column(Integer, nullable=False, default=999)
     created_at = Column(DateTime, nullable=False)
 
     user = relationship("Users", back_populates="scores")
@@ -41,6 +41,7 @@ class Diary(Base):
     diary_id = Column(Integer, primary_key=True, index=True, unique=True)
     user_id = Column(Integer, ForeignKey("users.user_id"), nullable=False)
     diary = Column(String, nullable=False)
+    created_at = Column(DateTime, nullable=False)
 
     user = relationship("Users", back_populates="diaries")
     score = relationship(

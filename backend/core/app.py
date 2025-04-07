@@ -4,7 +4,7 @@ from db.database import engine, Base
 from core.config import settings
 import db.models  # noqa: F401
 
-from routers import test, authentication, user
+from routers import test, authentication, user, predict, diary
 
 ENV = settings.ENVIRONMENT
 BASE_PREFIX = settings.BASE_PREFIX
@@ -17,8 +17,8 @@ def create_app():
     # CORS
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*",],
-        allow_credentials=True,
+        allow_origins=["*", "http://localhost:3000",],
+        allow_credentials=False,
         allow_methods=["*"],
         allow_headers=["*"],
     )
@@ -32,6 +32,14 @@ def create_app():
     app.include_router(
         user.router,
         prefix=f"{BASE_PREFIX}/user"
+        )
+    app.include_router(
+        predict.router,
+        prefix=f"{BASE_PREFIX}/predict"
+        )
+    app.include_router(
+        diary.router,
+        prefix=f"{BASE_PREFIX}/diary"
         )
     # Initialize Database
     try:
