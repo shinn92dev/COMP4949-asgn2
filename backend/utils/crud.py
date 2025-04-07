@@ -63,17 +63,21 @@ class CRUD:
         self,
         user_id: str,
         score: int,
-        diary_id: int | None = None
+        diary_id: int | None = None,
+        created_at: str | None = None
     ) -> DepressionScore:
         db = SessionLocal()
         try:
             user = db.query(Users).filter(Users.user_id == user_id).first()
             if not user:
                 raise HTTPException(status_code=404, detail="User not found")
+            formatted_date = datetime.strptime(
+                created_at, "%Y-%m-%d"
+                ) if created_at else datetime.now(timezone.utc)
             new_score = DepressionScore(
                 user_id=user_id,
                 score=score,
-                created_at=datetime.now(timezone.utc),
+                created_at=formatted_date,
                 diary_id=diary_id
             )
             db.add(new_score)
@@ -127,5 +131,33 @@ class CRUD:
                 }
                 for d in all_diary
                 ]
+        finally:
+            db.close()
+
+    def get_all_scores(self, user_id: str):
+        db = SessionLocal()
+        try:
+            user = db.query(Users).filter(Users.user_id == user_id).first()
+            if not user:
+                raise HTTPException(status_code=404, detail="User not found")
+
+            scores = db.query(
+                DepressionScore
+                ).filter(
+                    DepressionScore.user_id == user_id
+                    ).all()
+            if not scores:
+                return []
+
+            return [
+                {
+                    "score_id": s.score_id,
+                    "user_id": s.user_id,
+                    "score": s.score,
+                    "created_at": s.created_at.isoformat(),
+                    "diary_id": s.diary_id,
+                }
+                for s in scores
+            ]
         finally:
             db.close()

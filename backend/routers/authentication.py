@@ -20,7 +20,7 @@ async def login(
         token = credentials.credentials
         user_info = await clerk.get_user_info(token)
         exist_user = crud.is_user_exist(user_info["user_id"])
-        
+
         print(f"✔[SERVER] User already exist: {exist_user}")
         if not exist_user:
             new_user = crud.add_new_user(user_info)

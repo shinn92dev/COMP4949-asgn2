@@ -4,7 +4,7 @@ from db.database import engine, Base
 from core.config import settings
 import db.models  # noqa: F401
 
-from routers import test, authentication, user, predict, diary
+from routers import test, authentication, user, predict, diary, score
 
 ENV = settings.ENVIRONMENT
 BASE_PREFIX = settings.BASE_PREFIX
@@ -40,6 +40,10 @@ def create_app():
     app.include_router(
         diary.router,
         prefix=f"{BASE_PREFIX}/diary"
+        )
+    app.include_router(
+        score.router,
+        prefix=f"{BASE_PREFIX}/score"
         )
     # Initialize Database
     try:

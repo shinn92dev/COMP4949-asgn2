@@ -45,3 +45,30 @@ export const submit_survey_request = async (survey_data: SurveyFormValues) => {
         return null;
     }
 };
+
+export const fetchAllScoresRequest = async () => {
+    try {
+        const userId = window.localStorage.getItem("user_id");
+        if (!userId) {
+            throw new Error("User id is not defined.");
+        }
+
+        const response = await fetch(`${BASE_URL}score/get`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ user_id: userId }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Fetching score data failed: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching all scores:", error);
+        return null;
+    }
+};

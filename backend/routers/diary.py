@@ -66,7 +66,7 @@ async def store_all_diary(
         score = predictor.predict_score_from_diary(diary_text)
         new_diary = crud.add_new_diary(user_id, diary_text, date)
         diary_id = new_diary.diary_id
-        crud.add_depression_score(user_id, score, diary_id)
+        crud.add_depression_score(user_id, score, diary_id, created_at=date)
         message = "Diary is saved and score is predicted successfully."
         return custom_response.success_response(
             message,
