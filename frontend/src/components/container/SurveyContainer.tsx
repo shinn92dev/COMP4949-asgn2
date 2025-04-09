@@ -33,8 +33,10 @@ const SurveyContainer = () => {
         console.log("Form Data:", data);
         const result = await submit_survey_request(data);
         console.log(result);
+        console.log(result.data.survey_score);
+        await window.localStorage.setItem("surveyScore", result.data.survey_score);
         if (result) {
-            navigate("/dashboard");
+            navigate("/score");
         } else {
             navigate("/error");
         }

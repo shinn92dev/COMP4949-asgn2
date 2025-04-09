@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +10,7 @@ const Score = () => {
         try {
             const stored = window.localStorage.getItem("surveyScore");
             if (stored === null) throw Error("Score is not stored.");
-            const score = Number(stored);
+            const score = parseInt(stored);
             if (isNaN(score)) throw Error("Score is not a number.");
             setSavedScore(score);
         } catch (error) {
@@ -41,6 +42,7 @@ const Score = () => {
                     <p className="max-w-xl text-lg">{getAdviceMessage(savedScore)}</p>
                 </>
             )}
+            <Button onClick={() => navigate("/dashboard")}>Go Back to Dashboard</Button>
         </div>
     );
 };
