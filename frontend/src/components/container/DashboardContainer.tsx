@@ -4,9 +4,8 @@ import { loginFetchRequest } from "@/src/api/authentication";
 import { checkInitialSurvey, fetchAllScoresRequest } from "@/src/api/service";
 import { useNavigate } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import ChartView from "@/src/components/ChartView"; // 차트 컴포넌트 import
+import ChartView from "@/src/components/ChartView";
 
-// 타입 선언
 type ScoreType = {
     score_id: number;
     user_id: string;
@@ -77,7 +76,7 @@ const DashboardContainer = () => {
         };
 
         loadAll();
-    }, [isSignedIn, session.session, navigate]);
+    }, [isSignedIn, session.session, navigate, scores]);
 
     // 📅 윈도우 리사이징 시 월 UI 업데이트
     useEffect(() => {

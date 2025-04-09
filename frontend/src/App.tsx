@@ -8,6 +8,8 @@ import Layout from "./Layout";
 import Survey from "./pages/Survey";
 import Diary from "./pages/Diary";
 import DiaryWrite from "./pages/DiaryWrite";
+import Error from "./pages/Error";
+import Score from "./pages/Score";
 
 const App = () => {
     return (
@@ -55,6 +57,19 @@ const App = () => {
                     }
                 />
                 <Route
+                    path="/score"
+                    element={
+                        <Layout>
+                            <SignedIn>
+                                <Score />
+                            </SignedIn>
+                            <SignedOut>
+                                <RedirectToSignIn />
+                            </SignedOut>
+                        </Layout>
+                    }
+                />
+                <Route
                     path="/signin"
                     element={
                         <Layout>
@@ -72,6 +87,14 @@ const App = () => {
                             <SignedOut>
                                 <RedirectToSignIn />
                             </SignedOut>
+                        </Layout>
+                    }
+                />
+                <Route
+                    path="/error"
+                    element={
+                        <Layout>
+                            <Error />
                         </Layout>
                     }
                 />
