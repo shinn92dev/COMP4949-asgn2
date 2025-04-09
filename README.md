@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="frontend/src/assets/logo.png" alt="Moodiary Logo" width="200"/>
+</p>
+
 # 🧠 Moodiary
 
 Moodiary is a web app that helps users track their **depression score** daily based on surveys and diary entries.  
@@ -60,6 +64,7 @@ pnpm run dev
 
 ### 📌 Motivation
 
-I created this app after personally struggling with depression during the semester.
-I wanted a tool that could reflect my daily mental health and give me guidance.
-Moodiary is a personal project built from experience, designed to support others through technology.
+In Vancouver and many urban areas, depression is a growing concern — especially among students and young adults.  
+I wanted to create a simple, data-driven tool that could support mental health by helping users better understand their emotional patterns.
+
+While this project was inspired in part by my own challenges earlier this year, its primary goal is to help others who may be going through similar struggles — by turning their thoughts into actionable insights.
